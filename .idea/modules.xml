@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/on-line-video.iml" filepath="$PROJECT_DIR$/on-line-video.iml" />
+      <module fileurl="file://$PROJECT_DIR$/on-line-video-admin/on-line-video-admin.iml" filepath="$PROJECT_DIR$/on-line-video-admin/on-line-video-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/on-line-video-eureka/on-line-video-eureka.iml" filepath="$PROJECT_DIR$/on-line-video-eureka/on-line-video-eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/on-line-video-zuul/on-line-video-zuul.iml" filepath="$PROJECT_DIR$/on-line-video-zuul/on-line-video-zuul.iml" />
     </modules>
