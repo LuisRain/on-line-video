@@ -13,6 +13,8 @@
         <module>on-line-video-eureka</module>
         <module>on-line-video-zuul</module>
         <module>on-line-video-admin</module>
+        <module>on-line-video-zipkin</module>
+        <module>on-line-video-service-user</module>
     </modules>
 
     <parent>

@@ -8,6 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="on-line-video-admin" />
         <module name="on-line-video-eureka" />
+        <module name="on-line-video-service-user" />
+        <module name="on-line-video-sleuth" />
+        <module name="on-line-video-zipkin" />
         <module name="on-line-video-zuul" />
       </profile>
     </annotationProcessing>
@@ -15,6 +18,9 @@
       <module name="on-line-video" target="1.8" />
       <module name="on-line-video-admin" target="1.8" />
       <module name="on-line-video-eureka" target="1.8" />
+      <module name="on-line-video-service-user" target="1.8" />
+      <module name="on-line-video-sleuth" target="1.8" />
+      <module name="on-line-video-zipkin" target="1.8" />
       <module name="on-line-video-zuul" target="1.8" />
       <module name="zuul" target="1.8" />
     </bytecodeTargetLevel>

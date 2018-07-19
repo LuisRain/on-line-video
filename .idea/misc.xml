@@ -7,6 +7,8 @@
         <option value="$PROJECT_DIR$/on-line-video-zuul/pom.xml" />
         <option value="$PROJECT_DIR$/on-line-video-eureka/pom.xml" />
         <option value="$PROJECT_DIR$/on-line-video-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/on-line-video-sleuth/pom.xml" />
+        <option value="$PROJECT_DIR$/on-line-video-service-user/pom.xml" />
       </list>
     </option>
   </component>
