@@ -15,6 +15,7 @@
         <module>on-line-video-admin</module>
         <module>on-line-video-zipkin</module>
         <module>on-line-video-service-user</module>
+        <module>on-line-video-oauth</module>
     </modules>
 
     <parent>

@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/on-line-video-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/on-line-video-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/on-line-video-oauth" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/on-line-video-service-user" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/on-line-video-zipkin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/on-line-video-zuul" charset="UTF-8" />

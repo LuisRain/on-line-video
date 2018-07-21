@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/on-line-video.iml" filepath="$PROJECT_DIR$/on-line-video.iml" />
       <module fileurl="file://$PROJECT_DIR$/on-line-video-admin/on-line-video-admin.iml" filepath="$PROJECT_DIR$/on-line-video-admin/on-line-video-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/on-line-video-eureka/on-line-video-eureka.iml" filepath="$PROJECT_DIR$/on-line-video-eureka/on-line-video-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/on-line-video-oauth/on-line-video-oauth.iml" filepath="$PROJECT_DIR$/on-line-video-oauth/on-line-video-oauth.iml" />
       <module fileurl="file://$PROJECT_DIR$/on-line-video-service-user/on-line-video-service-user.iml" filepath="$PROJECT_DIR$/on-line-video-service-user/on-line-video-service-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/on-line-video-zipkin/on-line-video-zipkin.iml" filepath="$PROJECT_DIR$/on-line-video-zipkin/on-line-video-zipkin.iml" />
       <module fileurl="file://$PROJECT_DIR$/on-line-video-zuul/on-line-video-zuul.iml" filepath="$PROJECT_DIR$/on-line-video-zuul/on-line-video-zuul.iml" />

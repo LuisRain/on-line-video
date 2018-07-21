@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="on-line-video-admin" />
         <module name="on-line-video-eureka" />
+        <module name="on-line-video-oauth" />
         <module name="on-line-video-service-user" />
         <module name="on-line-video-sleuth" />
         <module name="on-line-video-zipkin" />
@@ -18,6 +19,7 @@
       <module name="on-line-video" target="1.8" />
       <module name="on-line-video-admin" target="1.8" />
       <module name="on-line-video-eureka" target="1.8" />
+      <module name="on-line-video-oauth" target="1.8" />
       <module name="on-line-video-service-user" target="1.8" />
       <module name="on-line-video-sleuth" target="1.8" />
       <module name="on-line-video-zipkin" target="1.8" />

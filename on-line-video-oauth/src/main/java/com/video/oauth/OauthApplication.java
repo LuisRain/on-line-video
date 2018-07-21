@@ -1,22 +1,18 @@
-package com.video.sleuth;
+package com.video.oauth;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Configuration;
-import zipkin.server.internal.EnableZipkinServer;
-
-import javax.annotation.Resource;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableEurekaClient
-@EnableZipkinServer
-public class ZipkinApplication {
+@EnableAuthorizationServer
+public class OauthApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZipkinApplication.class, args);
+		SpringApplication.run(OauthApplication.class, args);
 	}
 }
