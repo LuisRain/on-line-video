@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/on-line-video-sleuth/pom.xml" />
         <option value="$PROJECT_DIR$/on-line-video-service-user/pom.xml" />
         <option value="$PROJECT_DIR$/on-line-video-oauth/pom.xml" />
+        <option value="$PROJECT_DIR$/on-line-video-generate/pom.xml" />
       </list>
     </option>
   </component>
