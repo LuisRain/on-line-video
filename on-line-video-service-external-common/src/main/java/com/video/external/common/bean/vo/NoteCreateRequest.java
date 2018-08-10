@@ -16,11 +16,23 @@ import lombok.ToString;
 @ToString
 public class NoteCreateRequest {
 
+    /**
+     * 要发送短信用户Id
+     */
     private long userId;
 
+    /**
+     * 短信电话号码
+     */
     private String phone;
 
+    /**
+     * 短信类型
+     */
     private NoteType type;
 
+    /**
+     * 短信内容
+     */
     private String noteContent;
 }

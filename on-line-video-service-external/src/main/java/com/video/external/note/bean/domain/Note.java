@@ -1,6 +1,8 @@
 package com.video.external.note.bean.domain;
 
 import com.video.common.bean.common.BaseDomain;
+import com.video.external.common.bean.mate.NoteSignatureType;
+import com.video.external.common.bean.mate.NoteTemplateType;
 import com.video.external.common.bean.mate.NoteType;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,4 +53,14 @@ public class Note extends BaseDomain {
      * 短信是否已经发送出去，无论发送成功否
      */
     private boolean isSend = false;
+
+    /**
+     * 短信签名类型
+     */
+    private NoteSignatureType signatureType;
+
+    /**
+     * 短信模板类型
+     */
+    private NoteTemplateType templateType;
 }

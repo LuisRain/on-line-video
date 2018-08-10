@@ -1,6 +1,22 @@
 package com.video.external.note.service.impl;
 
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.IAcsClient;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.profile.DefaultProfile;
+import com.aliyuncs.profile.IClientProfile;
+import com.netflix.client.config.DefaultClientConfigImpl;
+import com.netflix.client.config.IClientConfig;
+import com.video.external.common.bean.vo.NoteCreateRequest;
+import com.video.external.note.bean.domain.Note;
+import com.video.external.note.bean.mate.AliyunNoteConfig;
+import com.video.external.note.repository.NoteLongRepository;
+import com.video.external.note.repository.NoteRepository;
 import com.video.external.note.service.AliyunNoteService;
+import javafx.beans.DefaultProperty;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,4 +26,56 @@ import org.springframework.stereotype.Service;
 @Service
 public class AliyunNoteServiceImpl implements AliyunNoteService {
 
+    @Autowired
+    private NoteRepository noteRepository;
+
+    @Autowired
+    private NoteLongRepository noteLongRepository;
+
+    @Autowired
+    private AliyunNoteConfig aliyunNoteConfig;
+
+    @Override
+    public void sendNote(NoteCreateRequest noteCreateRequest) {
+
+    }
+
+    @Override
+    public void sendNote(NoteCreateRequest noteCreateRequest, boolean flag) {
+
+    }
+
+    @Override
+    public void snedDatabaseNote(long noteId) {
+
+    }
+
+    /**
+     * 连接阿里云并推送短信服务
+     *
+     * @param note 短信信息体
+     * @return
+     * @throws ClientException
+     */
+    private SendSmsResponse aliyunSendNote(Note note) throws ClientException {
+        //初始化acsClient
+        IClientProfile iClientConfig = DefaultProfile.getProfile("cn-hangzhou",
+                aliyunNoteConfig.getAccessKeyId(), aliyunNoteConfig.getAccessKeySecret());
+        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou",
+                aliyunNoteConfig.getProduct(), aliyunNoteConfig.getDomain());
+        IAcsClient iAcsClient = new DefaultAcsClient(iClientConfig);
+
+        //组装请求对象
+        SendSmsRequest sendSmsRequest = new SendSmsRequest();
+        sendSmsRequest.setPhoneNumbers(note.getPhone());
+        sendSmsRequest.setSignName(note.getSignatureType().name());
+        sendSmsRequest.setTemplateCode(note.getTemplateType().name());
+        sendSmsRequest.setTemplateParam(note.getNoteContent());
+        // 短信扩展字段为发送的短信id
+        sendSmsRequest.setOutId(String.valueOf(note.getNoteId()));
+
+        // 发送响应
+        SendSmsResponse sendSmsResponse = iAcsClient.getAcsResponse(sendSmsRequest);
+        return sendSmsResponse;
+    }
 }

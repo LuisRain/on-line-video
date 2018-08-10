@@ -15,9 +15,23 @@ import lombok.ToString;
 @ToString
 public class NoteSendResponse {
 
+    /**
+     * 发送短信的短信Id
+     */
+    private long nodeId;
+
+    /**
+     * 短信号码
+     */
     private String phone;
 
+    /**
+     * 短信响应代码
+     */
     private int code;
 
+    /**
+     * 短信响应代码消息
+     */
     private String message;
 }
