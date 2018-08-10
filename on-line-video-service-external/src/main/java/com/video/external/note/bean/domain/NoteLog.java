@@ -19,6 +19,11 @@ public class NoteLog {
     private long noteId;
 
     /**
+     * 阿里云产生的流水号
+     */
+    private String bizId;
+
+    /**
      * 短信发送后短信平台返回的代码
      */
     private int code;
