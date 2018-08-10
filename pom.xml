@@ -10,13 +10,13 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>on-line-video-eureka</module>
-        <module>on-line-video-zuul</module>
-        <module>on-line-video-admin</module>
-        <module>on-line-video-zipkin</module>
         <module>on-line-video-service-user</module>
-        <module>on-line-video-oauth</module>
         <module>on-line-video-generate</module>
+        <module>on-line-video-system</module>
+        <module>on-line-video-common</module>
+        <module>on-line-video-service-external</module>
+        <module>on-video-service-generate-common</module>
+        <module>on-line-video-service-external-common</module>
     </modules>
 
     <parent>

@@ -14,17 +14,12 @@ public interface GenerateIdService {
     long nextId();
 
     /**
-     * 阻塞到下一个毫秒，直到获得新的时间戳
-     *
-     * @param lastTimestamp 上次生成ID的时间截
-     * @return 当前时间戳
+     * 指定工作号和数据中心号获取指定区域Id，线程安全
+     * @param datacenterId
+     * @param workerId
+     * @return
      */
-    long tilNextMillis(long lastTimestamp);
+    long nextId(long datacenterId, long workerId);
 
-    /**
-     * 返回以毫秒为单位的当前时间
-     *
-     * @return 当前时间(毫秒)
-     */
-    long timeGen();
+
 }

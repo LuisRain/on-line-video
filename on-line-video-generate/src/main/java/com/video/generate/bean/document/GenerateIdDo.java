@@ -6,6 +6,8 @@ import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * @author: master
  * @date: 2018/7/23
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @ToString
 @Component
-public class GenerateIdDo {
+public class GenerateIdDo implements Serializable {
     /**
      * 开始时间截 (2018-01-01）
      */

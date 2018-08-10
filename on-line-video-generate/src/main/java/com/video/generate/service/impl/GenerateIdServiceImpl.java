@@ -21,6 +21,25 @@ public class GenerateIdServiceImpl implements GenerateIdService {
     @Value("${com.generate.datacenter-id:1}")
     private long datacenterId = 0L;
 
+
+    /**
+     * 指定工作号和数据中心号获取指定区域Id，线程安全
+     *
+     * @param datacenterId
+     * @param workerId
+     * @return
+     */
+    @Override
+    public synchronized long nextId(long datacenterId, long workerId) {
+        if (datacenterId > 0 && datacenterId <= 31) {
+            this.workerId = workerId;
+        }
+        if (workerId > 0 && workerId <= 31) {
+            this.datacenterId = datacenterId;
+        }
+        return nextId();
+    }
+
     /**
      * 获得下一个ID (该方法是线程安全的)
      *
@@ -60,10 +79,11 @@ public class GenerateIdServiceImpl implements GenerateIdService {
         generateIdDo.setLastTimestamp(timestamp);
 
         //移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - generateIdDo.getTwepoch()) << generateIdDo.getTimestampLeftShift())
+        long generateId = ((timestamp - generateIdDo.getTwepoch()) << generateIdDo.getTimestampLeftShift())
                 | (generateIdDo.getDatacenterId() << generateIdDo.getDatacenterIdShift())
                 | (generateIdDo.getWorkerId() << generateIdDo.getWorkerIdShift())
                 | generateIdDo.getSequence();
+        return generateId;
     }
 
     /**
@@ -72,8 +92,7 @@ public class GenerateIdServiceImpl implements GenerateIdService {
      * @param lastTimestamp 上次生成ID的时间截
      * @return 当前时间戳
      */
-    @Override
-    public long tilNextMillis(long lastTimestamp) {
+    private long tilNextMillis(long lastTimestamp) {
         long timestamp = timeGen();
         while (timestamp <= lastTimestamp) {
             timestamp = timeGen();
@@ -86,8 +105,7 @@ public class GenerateIdServiceImpl implements GenerateIdService {
      *
      * @return 当前时间(毫秒)
      */
-    @Override
-    public long timeGen() {
+    private long timeGen() {
         return System.currentTimeMillis();
     }
 }
