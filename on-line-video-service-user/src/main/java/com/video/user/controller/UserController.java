@@ -1,7 +1,5 @@
 package com.video.user.controller;
 
-import com.video.common.bean.vo.BaseResponseVo;
-import com.video.common.util.BaseResponseUtils;
 import com.video.user.bean.vo.UserTokenInfoVo;
 import com.video.user.service.UserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.concurrent.ExecutionException;
 
 /**
  * @author: master

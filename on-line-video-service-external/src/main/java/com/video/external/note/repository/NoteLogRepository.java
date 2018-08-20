@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author: master
  * @date: 2018/8/11
  */
-public interface NoteLongRepository extends CrudRepository<NoteLog, Long> {
+public interface NoteLogRepository extends CrudRepository<NoteLog, Long> {
 
 }

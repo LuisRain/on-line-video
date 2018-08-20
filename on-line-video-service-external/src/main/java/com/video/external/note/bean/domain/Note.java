@@ -1,12 +1,16 @@
 package com.video.external.note.bean.domain;
 
 import com.video.common.bean.common.BaseDomain;
+import com.video.external.common.bean.mate.InformationType;
 import com.video.external.common.bean.mate.NoteSignatureType;
 import com.video.external.common.bean.mate.NoteTemplateType;
-import com.video.external.common.bean.mate.NoteType;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * 短信发送表
@@ -17,11 +21,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@Entity
 public class Note extends BaseDomain {
 
     /**
      * 短信Id
      */
+    @Id
     private long noteId;
 
     /**
@@ -37,7 +44,7 @@ public class Note extends BaseDomain {
     /**
      * 发送的短信类型
      */
-    private NoteType type;
+    private InformationType type;
 
     /**
      * 短信的内容
@@ -53,6 +60,11 @@ public class Note extends BaseDomain {
      * 短信是否已经发送出去，无论发送成功否
      */
     private boolean isSend = false;
+
+    /**
+     * 是否立即发送,默认true立即发送
+     */
+    private boolean immediately = true;
 
     /**
      * 短信签名类型

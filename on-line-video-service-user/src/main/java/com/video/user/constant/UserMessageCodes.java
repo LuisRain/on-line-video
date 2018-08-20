@@ -34,7 +34,7 @@ public class UserMessageCodes extends BaseMessageCodes {
      */
     public static final String USER_EMAIL_EXIST = "user.email.exist";
     /**
-     * 用户邮箱已经存在
+     * 用户手机已经存在
      */
     public static final String USER_PHONE_EXIST = "user.phone.exist";
     /**

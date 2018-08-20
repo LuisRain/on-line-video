@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: on-line-video-service-external
+  zipkin:
+    base-url: http://localhost:8083
+  sleuth:
+    sampler:
+      probability: 1.0
+    web:
+      skipPattern: (^cleanup.*|.+favicon.*)
+  datasource:
+    url: jdbc:mysql:///on_line_video_external?useUnicode=true&characterEncoding=utf8&useSSL=false&nullNamePatternMatchesAll=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: iloveyou0315
+  cloud:
+    stream:
+      default-binder: kafka
+      binders:
+        kafka:
+          binder:
+            brokers: localhost:9092
+            minPartitionCount: 1
+            autoCreateTopics: true
+            autoAddPartitions: truem
+        note_activation_channel:
+          group: note_activation_group
+          destination: note
+          producer:
+            partitionCount: 1
+          binder: kafka
+  jpa:
+      hibernate:
+        ddl-auto: update
+
+
+server:
+  port: ${cloud_zuul_port:8087}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${server_eureka_path:http://localhost:8080/eureka}
+
+aliyun:
+  note:
+    product: Dysmsapi
+    domain: dysmsapi.aliyuncs.com
+    accessKeyId: LTAIstd90MCv2AhQ
+    accessKeySecret: dzISvL3HuVB7Wh9vEuBci60M75mn6P
+
+note:
+  service:
+    enable: false
+

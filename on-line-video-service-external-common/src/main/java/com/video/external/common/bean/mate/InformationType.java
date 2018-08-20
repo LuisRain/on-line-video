@@ -6,7 +6,7 @@ package com.video.external.common.bean.mate;
  * @author: master
  * @date: 2018/8/10
  */
-public enum NoteType {
+public enum InformationType {
 
     /**
      * 激活码通知类型

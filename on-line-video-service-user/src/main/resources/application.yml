@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: on-line-video-service-user
+  zipkin:
+    base-url: http://localhost:8083
+  sleuth:
+    sampler:
+      probability: 1.0
+    web:
+      skipPattern: (^cleanup.*|.+favicon.*)
+  datasource:
+    url: jdbc:mysql:///on_line_video_user?useUnicode=true&characterEncoding=utf8&useSSL=false&nullNamePatternMatchesAll=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: iloveyou0315
+  cloud:
+    stream:
+      default-binder: kafka
+      binders:
+        kafka:
+          binder:
+            brokers: localhost:9092
+            minPartitionCount: 1
+            autoCreateTopics: true
+            autoAddPartitions: true
+        note_activation_channel:
+          group: note_activation_group
+          destination: note
+          producer:
+            partitionCount: 1
+          binder: kafka
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: ${cloud_zuul_port:8084}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${server_eureka_path:http://localhost:8080/eureka}

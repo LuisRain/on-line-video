@@ -18,7 +18,6 @@ import java.util.Locale;
  * @author: master
  * @date: 2018/7/29
  */
-@Component
 public class BaseResponseUtils {
 
     /**

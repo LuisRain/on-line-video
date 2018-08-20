@@ -3,6 +3,7 @@ package com.video.user.service;
 import com.video.user.bean.domain.UserToken;
 import com.video.user.bean.vo.UserTokenInfoVo;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -50,6 +51,6 @@ public interface UserTokenService {
      *
      * @param userTokenInfoVo 注册或者登录的信息实体
      */
-    void saveUserToken(UserTokenInfoVo userTokenInfoVo) throws ExecutionException, InterruptedException;
+    void saveUserToken(UserTokenInfoVo userTokenInfoVo) throws ExecutionException, InterruptedException, UnsupportedEncodingException;
 
 }

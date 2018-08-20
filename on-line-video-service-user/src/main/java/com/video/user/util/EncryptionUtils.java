@@ -1,10 +1,14 @@
 package com.video.user.util;
 
+import com.video.user.bean.domain.UserToken;
 import org.apache.commons.lang.StringUtils;
 import org.bouncycastle.pqc.math.linearalgebra.ByteUtils;
+import org.springframework.beans.factory.annotation.Value;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.UnsupportedEncodingException;
+import java.security.*;
 import java.util.Random;
 
 /**
@@ -14,6 +18,11 @@ import java.util.Random;
  * @date: 2018/8/6
  */
 public class EncryptionUtils {
+
+    @Value("${security.encrypt.key}")
+    private static String key = "365FA2D3E754C07AC941695FAA9CE351B7144C1795AAE3894B7437C9513F0$%&#FD2";
+
+    private final static String CODING = "utf-8";
 
     /**
      * 随机盐字符集
@@ -49,17 +58,20 @@ public class EncryptionUtils {
      * @param salt     随机盐
      * @return 返回随机盐加密后的密码
      */
-    public static String encryption(String password, String salt) {
+    public static String encryption(String password, String salt) throws UnsupportedEncodingException {
         byte[] encryption = null;
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] passwordByte = (password.concat(salt)).getBytes();
+            StringBuilder builder = new StringBuilder(password);
+            builder.append(salt);
+            byte[] passwordByte = (builder.toString()).getBytes(CODING);
             digest.update(passwordByte);
             encryption = digest.digest();
+            return TranscodingUtil.parseByte2HexStr(encryption);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return ByteUtils.toBinaryString(encryption);
+        return null;
     }
 
     /**
@@ -72,12 +84,86 @@ public class EncryptionUtils {
         byte[] encryption = null;
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] passwordByte = info.getBytes();
+            byte[] passwordByte = info.getBytes(CODING);
             digest.update(passwordByte);
             encryption = digest.digest();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
         return ByteUtils.toBinaryString(encryption);
+    }
+
+    /**
+     * 将用户userId和用户密码一起加密
+     *
+     * @param userId   用户的userId
+     * @param password 用户的密码
+     * @return 返回加密后的字符串
+     * @throws NoSuchAlgorithmException
+     */
+    public static String buildActivationCode(String userId, String password) {
+        try {
+            StringBuilder builder = new StringBuilder();
+            builder.append(userId).append(",").append(password);
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+            keyGenerator.init(128, new SecureRandom(EncryptionUtils.key.getBytes(CODING)));
+            SecretKey secretKey = keyGenerator.generateKey();
+            byte[] enCodeFormat = secretKey.getEncoded();
+            SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            byte[] encryptContent = builder.toString().getBytes("utf-8");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] result = cipher.doFinal(encryptContent);
+            return TranscodingUtil.parseByte2HexStr(result);
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 解析激活码
+     *
+     * @param activationCode 加密后的激活码
+     * @return 解密后的激活码
+     */
+    public static String decryptionActivationCode(String activationCode) {
+        byte[] activationCodeByte = TranscodingUtil.parseHexStr2Byte(activationCode);
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+            keyGenerator.init(128, new SecureRandom(EncryptionUtils.key.getBytes(CODING)));
+            SecretKey secretKey = keyGenerator.generateKey();
+            byte[] enCodeFormat = secretKey.getEncoded();
+            SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, key);
+            byte[] result = cipher.doFinal(activationCodeByte);
+            return TranscodingUtil.parseByte2HexStr(result);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
