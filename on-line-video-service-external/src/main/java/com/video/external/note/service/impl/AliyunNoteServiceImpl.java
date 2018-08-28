@@ -62,12 +62,13 @@ public class AliyunNoteServiceImpl implements AliyunNoteService {
             // 立刻发送,并写入数据库中
             sendSmsResponse = aliyunSendNote(note);
         }
-        // 不管成不成功都会保存到数据库中
-        noteRepository.save(note);
         if (sendSmsResponse != null) {
+            note.setSend(true);
             NoteLog noteLog = packageNoteLog(sendSmsResponse, note.getNoteId());
             noteLogRepository.save(noteLog);
         }
+        // 不管成不成功都会保存到数据库中
+        noteRepository.save(note);
     }
 
     @CheckNoteServiceEnable

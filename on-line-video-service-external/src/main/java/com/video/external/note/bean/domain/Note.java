@@ -52,7 +52,7 @@ public class Note extends BaseDomain {
     private String noteContent;
 
     /**
-     * 短信是否有效，针对于验证码或者激活码
+     * 短信是否有效，针对于验证码或者激活码,true表示验证码或者激活码
      */
     private boolean isEffective = false;
 
