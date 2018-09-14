@@ -46,8 +46,8 @@ aliyun:
   note:
     product: Dysmsapi
     domain: dysmsapi.aliyuncs.com
-    accessKeyId: LTAIstd90MCv2AhQ
-    accessKeySecret: dzISvL3HuVB7Wh9vEuBci60M75mn6P
+    accessKeyId: ******
+    accessKeySecret: *******
 
 note:
   service:
